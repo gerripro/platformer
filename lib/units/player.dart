@@ -20,31 +20,38 @@ class Player extends SpriteAnimationComponent
     with HasGameRef, Move, HasHitboxes, Collidable {
   Player();
 
-  double _radius = 80;
-  double _speed = 10;
+  final double _radius = 80;
+  final double _speed = 200;
   double _animationSpeed = 0.3;
   late Vector2 _objectSize = Vector2(_radius, _radius);
+  Vector2 velocity = Vector2.zero();
+  int _xAxisInput = 0;
+  int _yAxisInput = 0;
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
     super.onCollision(intersectionPoints, other);
   }
 
-  void moveRight(double delta){
-    position.add(Vector2(delta * _speed, 0)); //todo remove after implementing move
+  void moveRight(double delta) {
+    position
+        .add(Vector2(delta * _speed, 0)); //todo remove after implementing move
   }
 
   void movePlayer({JoystickDirection direction = JoystickDirection.idle}) {
-    if (direction == JoystickDirection.right){
+    if (direction == JoystickDirection.right) {
+      _xAxisInput = 1;
       animateRunRight();
     }
-    if (direction == JoystickDirection.left){
+    if (direction == JoystickDirection.left) {
+      _xAxisInput = -1;
       animateRunLeft();
     }
-    if (direction == JoystickDirection.idle){
+    if (direction == JoystickDirection.idle) {
+      _xAxisInput = 0;
       animateStay();
     }
-    if (direction == JoystickDirection.up){
+    if (direction == JoystickDirection.up) {
       // animateJump(); //todo implement jump
     }
   }
@@ -69,10 +76,12 @@ class Player extends SpriteAnimationComponent
   @override
   void update(double dt) {
     super.update(dt);
-    // moveRight(dt);
+    velocity.x = _xAxisInput * _speed;
+    position += velocity * dt;
   }
 
   Async.Future<void> animateStay() async {
+    _animationSpeed=0.3;
     double spriteSize = 96;
     String spritePath = 'hero-stay.png';
     var spriteSheet = await gameRef.images.load(spritePath);
@@ -82,6 +91,7 @@ class Player extends SpriteAnimationComponent
   }
 
   Async.Future<void> animateRunRight() async {
+    _animationSpeed=0.15;
     double spriteSize = 96;
     String spritePath = 'hero-move.png';
     var spriteSheet = await gameRef.images.load(spritePath);
@@ -92,6 +102,7 @@ class Player extends SpriteAnimationComponent
   }
 
   Async.Future<void> animateRunLeft() async {
+    _animationSpeed=0.15;
     double spriteSize = 96;
     String spritePath = 'hero-move.png';
     var spriteSheet = await gameRef.images.load(spritePath);
