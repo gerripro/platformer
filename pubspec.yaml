@@ -28,7 +28,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flame: ^1.0.0         # game engine
+  flame: ^1.0.0               # game engine
+  flame_tiled: 1.2.1         # tiled components
 
 
   flutter_lints: ^1.0.0
@@ -36,6 +37,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+      # tiles
+    - assets/tiles/level-1.tmx
+    - assets/tiles/platform.tsx
       # sounds
     - assets/sounds/jump-1.wav
     - assets/sounds/shoot-1.wav
@@ -50,6 +54,7 @@ flutter:
     - assets/images/bullet.png
     - assets/images/box-1.png
     - assets/images/back-1.png
+    - assets/images/platform.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

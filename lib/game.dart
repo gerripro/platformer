@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame/sprite.dart';
+import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/services.dart';
 import 'package:platformer/scene/cursor.dart';
 import 'package:platformer/units/enemy.dart';
@@ -21,6 +22,9 @@ class MyGame extends FlameGame
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+    final levelMap = await TiledComponent.load(
+        'level-1.tmx', Vector2.all(96)); //todo separate to a dif class
+    add(levelMap);
     add(player..position = size / 2);
   }
 
