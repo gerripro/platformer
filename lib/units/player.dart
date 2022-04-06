@@ -34,17 +34,17 @@ class Player extends SpriteAnimationComponent
     position.add(Vector2(delta * _speed, 0)); //todo remove after implementing move
   }
 
-  void movePlayer({Direction direction = Direction.none}) {
-    if (direction == Direction.right){
+  void movePlayer({JoystickDirection direction = JoystickDirection.idle}) {
+    if (direction == JoystickDirection.right){
       animateRunRight();
     }
-    if (direction == Direction.left){
+    if (direction == JoystickDirection.left){
       animateRunLeft();
     }
-    if (direction == Direction.none){
+    if (direction == JoystickDirection.idle){
       animateStay();
     }
-    if (direction == Direction.up){
+    if (direction == JoystickDirection.up){
       // animateJump(); //todo implement jump
     }
   }
@@ -63,7 +63,6 @@ class Player extends SpriteAnimationComponent
     anchor = Anchor.center;
     await animateStay();
     addHitbox(HitboxRectangle(relation: Vector2(0.52, 1)));
-    debugMode = true;
     return super.onLoad();
   }
 
