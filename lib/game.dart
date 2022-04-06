@@ -8,7 +8,7 @@ import 'package:platformer/units/enemy.dart';
 import 'package:platformer/units/player.dart';
 
 class MyGame extends FlameGame with HasTappables, HasCollidables{
-  Player player = Player(radius: 50);
+  Player player = Player();
 
   @override
   Future<void> onLoad() async {

@@ -17,35 +17,16 @@ import 'package:platformer/interfaces/move.dart';
 
 class Player extends SpriteAnimationComponent
     with HasGameRef, Move, HasHitboxes, Collidable {
-  final double radius;
-  final double speed;
+  Player();
 
-  Player({required this.radius, this.speed = 5});
-
-  int _level = 1;
-  double _radius = 50;
+  double _radius = 80;
   double _speed = 10;
-  double _animationSpeed = 0.1;
+  double _animationSpeed = 0.3;
   late Vector2 _objectSize = Vector2(_radius, _radius);
-  String spritePath = 'sprites/moon/spritesheet_moon.png';
-
-  void eat(PositionComponent enemy) {
-    if (enemy.size.x <= size.x && enemy.size.y <= size.y) {
-      _level += 1;
-      _radius = _radius * 1.1;
-      _animationSpeed = _animationSpeed * 1.1;
-      animate();
-      _speed = _speed * 0.9;
-      _objectSize = Vector2(_radius, _radius);
-      enemy.removeFromParent();
-    } else {
-      print('you\'ve got eaten');
-    }
-  }
+  String spritePath = 'hero-stay.png';
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
-    eat(other);
     super.onCollision(intersectionPoints, other);
   }
 
@@ -61,13 +42,14 @@ class Player extends SpriteAnimationComponent
     _objectSize = Vector2(_radius, _radius);
     size = _objectSize;
     anchor = Anchor.center;
-    await animate();
-    addHitbox(HitboxCircle());
+    await stayingAnimation();
+    addHitbox(HitboxRectangle(relation: Vector2(0.52,1)));
+    debugMode=true;
     return super.onLoad();
   }
 
-  Async.Future<void> animate() async {
-    double spriteSize = 48;
+  Async.Future<void> stayingAnimation() async {
+    double spriteSize = 96;
     var spriteSheet = await gameRef.images.load(spritePath);
     SpriteSheet _spriteSheet = SpriteSheet(
         image: spriteSheet, srcSize: Vector2(spriteSize, spriteSize));
@@ -78,6 +60,5 @@ class Player extends SpriteAnimationComponent
   void update(double dt) {
     super.update(dt);
     position.add(movingPos);
-    size = _objectSize;
   }
 }

@@ -36,7 +36,19 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/sprites/moon/1.png
+      # sounds
+    - assets/sounds/jump-1.wav
+    - assets/images/shoot-1.wav
+      # images
+    - assets/images/hero-stay.png
+    - assets/images/hero-shoot.png
+    - assets/images/hero-damage.png
+    - assets/images/hero-jump.png
+    - assets/images/heart.png
+    - assets/images/enemy-1.png
+    - assets/images/bullet.png
+    - assets/images/box-1.png
+    - assets/images/back-1.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
