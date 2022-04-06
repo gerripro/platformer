@@ -38,11 +38,12 @@ flutter:
   assets:
       # sounds
     - assets/sounds/jump-1.wav
-    - assets/images/shoot-1.wav
+    - assets/sounds/shoot-1.wav
       # images
     - assets/images/hero-stay.png
     - assets/images/hero-shoot.png
     - assets/images/hero-damage.png
+    - assets/images/hero-move.png
     - assets/images/hero-jump.png
     - assets/images/heart.png
     - assets/images/enemy-1.png

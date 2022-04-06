@@ -23,7 +23,6 @@ class Player extends SpriteAnimationComponent
   double _speed = 10;
   double _animationSpeed = 0.3;
   late Vector2 _objectSize = Vector2(_radius, _radius);
-  String spritePath = 'hero-stay.png';
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
@@ -42,18 +41,39 @@ class Player extends SpriteAnimationComponent
     _objectSize = Vector2(_radius, _radius);
     size = _objectSize;
     anchor = Anchor.center;
-    await stayingAnimation();
-    addHitbox(HitboxRectangle(relation: Vector2(0.52,1)));
-    debugMode=true;
+    await animateStay();
+    addHitbox(HitboxRectangle(relation: Vector2(0.52, 1)));
+    debugMode = true;
     return super.onLoad();
   }
 
-  Async.Future<void> stayingAnimation() async {
+  Async.Future<void> animateStay() async {
     double spriteSize = 96;
+    String spritePath = 'hero-stay.png';
     var spriteSheet = await gameRef.images.load(spritePath);
     SpriteSheet _spriteSheet = SpriteSheet(
         image: spriteSheet, srcSize: Vector2(spriteSize, spriteSize));
     animation = _spriteSheet.createAnimation(row: 0, stepTime: _animationSpeed);
+  }
+
+  Async.Future<void> animateRunRight() async {
+    double spriteSize = 96;
+    String spritePath = 'hero-move.png';
+    var spriteSheet = await gameRef.images.load(spritePath);
+    SpriteSheet _spriteSheet = SpriteSheet(
+        image: spriteSheet, srcSize: Vector2(spriteSize, spriteSize));
+    animation = _spriteSheet.createAnimation(
+        row: 0, stepTime: _animationSpeed, from: 0, to: 2);
+  }
+
+  Async.Future<void> animateRunLeft() async {
+    double spriteSize = 96;
+    String spritePath = 'hero-move.png';
+    var spriteSheet = await gameRef.images.load(spritePath);
+    SpriteSheet _spriteSheet = SpriteSheet(
+        image: spriteSheet, srcSize: Vector2(spriteSize, spriteSize));
+    animation = _spriteSheet.createAnimation(
+        row: 0, stepTime: _animationSpeed, from: 2, to: 4);
   }
 
   @override
