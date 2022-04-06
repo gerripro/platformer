@@ -14,6 +14,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/widgets.dart';
 import 'package:platformer/interfaces/move.dart';
+import 'package:platformer/utils/direction.dart';
 
 class Player extends SpriteAnimationComponent
     with HasGameRef, Move, HasHitboxes, Collidable {
@@ -27,6 +28,25 @@ class Player extends SpriteAnimationComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
     super.onCollision(intersectionPoints, other);
+  }
+
+  void moveRight(double delta){
+    position.add(Vector2(delta * _speed, 0)); //todo remove after implementing move
+  }
+
+  void movePlayer({Direction direction = Direction.none}) {
+    if (direction == Direction.right){
+      animateRunRight();
+    }
+    if (direction == Direction.left){
+      animateRunLeft();
+    }
+    if (direction == Direction.none){
+      animateStay();
+    }
+    if (direction == Direction.up){
+      // animateJump(); //todo implement jump
+    }
   }
 
   @override
@@ -45,6 +65,12 @@ class Player extends SpriteAnimationComponent
     addHitbox(HitboxRectangle(relation: Vector2(0.52, 1)));
     debugMode = true;
     return super.onLoad();
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    // moveRight(dt);
   }
 
   Async.Future<void> animateStay() async {
@@ -74,11 +100,5 @@ class Player extends SpriteAnimationComponent
         image: spriteSheet, srcSize: Vector2(spriteSize, spriteSize));
     animation = _spriteSheet.createAnimation(
         row: 0, stepTime: _animationSpeed, from: 2, to: 4);
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-    position.add(movingPos);
   }
 }
