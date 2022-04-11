@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="96" tileheight="96" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="96" tileheight="96" infinite="0" nextlayerid="5" nextobjectid="28">
  <tileset firstgid="1" source="platform.tsx"/>
+ <tileset firstgid="11" source="enemy.tsx"/>
+ <tileset firstgid="15" source="hero-jump.tsx"/>
  <layer id="1" name="Слой тайлов 1" width="20" height="10">
   <data encoding="base64">
    AQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAACQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAJAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAJAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAACgAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAoAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAACAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAgAAAAMAAAAEAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAgAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAIAAAAGAAAAAQAAAAYAAAAEAAAAAQAAAAEAAAABAAAAAQAAAAIAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAABAAAAAEAAAACAAAAAQAAAAEAAAAGAAAAAQAAAAcAAAABAAAAAQAAAAEAAAACAAAABgAAAAYAAAAGAAAABgAAAAEAAAABAAAABgAAAAYAAAAHAAAAAQAAAAUAAAAGAAAAAQAAAAEAAAABAAAABwAAAAEAAAACAAAAAwAAAAYAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAcAAAABAAAABQAAAAEAAAABAAAAAQAAAAYAAAAHAAAAAQAAAAUAAAABAAAABgAAAAEAAAAGAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAGAAAABwAAAAEAAAAFAAAAAQAAAAEAAAABAAAAAQAAAAcAAAABAAAABQAAAAYAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAA=
   </data>
  </layer>
+ <objectgroup id="2" name="platform" visible="0">
+  <object id="1" x="4" y="578" width="380.667" height="377.515"/>
+  <object id="2" x="484.97" y="580" width="567.515" height="366.667"/>
+  <object id="3" x="1157.58" y="674.848" width="757.576" height="279.697"/>
+  <object id="4" x="1448.48" y="487.879" width="472.727" height="184.848"/>
+  <object id="5" x="1448.48" y="487.879"/>
+  <object id="6" x="1345.45" y="581.818" width="109.091" height="96.9697"/>
+  <object id="7" x="578.788" y="481.818" width="471.636" height="115.152"/>
+  <object id="8" x="675.758" y="387.879" width="281.818" height="90.9091"/>
+  <object id="9" x="257.576" y="1103.03"/>
+ </objectgroup>
+ <objectgroup id="3" name="cactus" visible="0">
+  <object id="10" x="860.667" y="290.667" width="99.3333" height="101.333">
+   <ellipse/>
+  </object>
+  <object id="11" x="1630" y="386" width="94.6667" height="100.667">
+   <ellipse/>
+  </object>
+  <object id="12" x="1078.67" y="724">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="spawnPoints">
+  <object id="13" type="Player" x="192" y="480" width="100" height="98"/>
+  <object id="14" type="Enemy" x="674" y="284" width="96" height="98"/>
+  <object id="25" gid="11" x="676.242" y="381.333" width="96" height="96"/>
+  <object id="27" gid="15" x="192.667" y="576" width="96" height="96"/>
+ </objectgroup>
 </map>

@@ -14,6 +14,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/widgets.dart';
 import 'package:platformer/interfaces/move.dart';
+import 'package:platformer/utils/configs.dart';
 import 'package:platformer/utils/direction.dart';
 
 class Player extends SpriteAnimationComponent
@@ -83,7 +84,7 @@ class Player extends SpriteAnimationComponent
   Async.Future<void> animateStay() async {
     _animationSpeed=0.3;
     double spriteSize = 96;
-    String spritePath = 'hero-stay.png';
+    String spritePath = Assets.playerStay;
     var spriteSheet = await gameRef.images.load(spritePath);
     SpriteSheet _spriteSheet = SpriteSheet(
         image: spriteSheet, srcSize: Vector2(spriteSize, spriteSize));
@@ -93,7 +94,7 @@ class Player extends SpriteAnimationComponent
   Async.Future<void> animateRunRight() async {
     _animationSpeed=0.15;
     double spriteSize = 96;
-    String spritePath = 'hero-move.png';
+    String spritePath = Assets.playerMove;
     var spriteSheet = await gameRef.images.load(spritePath);
     SpriteSheet _spriteSheet = SpriteSheet(
         image: spriteSheet, srcSize: Vector2(spriteSize, spriteSize));
@@ -104,7 +105,7 @@ class Player extends SpriteAnimationComponent
   Async.Future<void> animateRunLeft() async {
     _animationSpeed=0.15;
     double spriteSize = 96;
-    String spritePath = 'hero-move.png';
+    String spritePath = Assets.playerMove;
     var spriteSheet = await gameRef.images.load(spritePath);
     SpriteSheet _spriteSheet = SpriteSheet(
         image: spriteSheet, srcSize: Vector2(spriteSize, spriteSize));

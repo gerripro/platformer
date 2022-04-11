@@ -6,13 +6,17 @@ import 'package:flame/sprite.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/services.dart';
 import 'package:platformer/scene/cursor.dart';
+import 'package:platformer/scene/level.dart';
 import 'package:platformer/units/enemy.dart';
 import 'package:platformer/units/player.dart';
+import 'package:platformer/utils/configs.dart';
 import 'package:platformer/utils/direction.dart';
+import 'package:flame/flame.dart';
 
 class MyGame extends FlameGame
     with HasTappables, HasDraggables, HasCollidables {
   Player player = Player();
+  Level? currentLevel;
 
   JoystickComponent joystick = JoystickComponent(
       size: 50,
@@ -21,11 +25,18 @@ class MyGame extends FlameGame
 
   @override
   Future<void> onLoad() async {
+    camera.viewport = FixedResolutionViewport(Vector2(960, 540));
+    await loadLevel(Assets.level1);
+    await Flame.device.fullScreen();
+    await Flame.device.setLandscape();
     await super.onLoad();
-    final levelMap = await TiledComponent.load(
-        'level-1.tmx', Vector2.all(96)); //todo separate to a dif class
-    add(levelMap);
-    add(player..position = size / 2);
+  }
+
+  Future<void> loadLevel(String levelName) async {
+    currentLevel?.removeFromParent();
+    currentLevel = Level(levelName);
+    await add(currentLevel!);
+    currentLevel!.loadPlayer(player);
   }
 
   @override

@@ -28,8 +28,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flame: ^1.0.0               # game engine
+  flame: ^1.0.0              # game engine
   flame_tiled: 1.2.1         # tiled components
+  tiled: 0.8.0               # tiled components
 
 
   flutter_lints: ^1.0.0
@@ -40,6 +41,8 @@ flutter:
       # tiles
     - assets/tiles/level-1.tmx
     - assets/tiles/platform.tsx
+    - assets/tiles/enemy.tsx
+    - assets/tiles/hero-jump.tsx
       # sounds
     - assets/sounds/jump-1.wav
     - assets/sounds/shoot-1.wav
