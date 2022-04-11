@@ -5,6 +5,8 @@ abstract class Assets {
 }
 
 abstract class Tiles {
-  static const spawnPoints = 'spawnPoints';
+  static const spawnActors = 'spawnPoints';
+  static const spawnObjects = 'platform';
   static const player = 'Player';
+  static const platform = 'Platform';
 }
