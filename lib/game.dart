@@ -25,7 +25,7 @@ class MyGame extends FlameGame
 
   @override
   Future<void> onLoad() async {
-    camera.viewport = FixedResolutionViewport(Vector2(960, 540)); //(1980,1024));
+    camera.viewport = FixedResolutionViewport(Vector2(960, 540));
     await loadLevel(Assets.level1);
     await Flame.device.fullScreen();
     await Flame.device.setLandscape();
