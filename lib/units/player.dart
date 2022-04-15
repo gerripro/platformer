@@ -14,6 +14,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/widgets.dart';
 import 'package:platformer/interfaces/move.dart';
+import 'package:platformer/main.dart';
 import 'package:platformer/scene/platform.dart';
 import 'package:platformer/utils/configs.dart';
 import 'package:platformer/utils/direction.dart';
@@ -41,7 +42,7 @@ class Player extends SpriteAnimationComponent
                 intersectionPoints.elementAt(1)) /
             2;
         final collisionNormal = absoluteCenter - mid;
-        final separationDistance = (size.x / 1.8) - collisionNormal.length;
+        final separationDistance = (size.x / 1.9) - collisionNormal.length;
         collisionNormal.normalize();
         if (_up.dot(collisionNormal) > 0.9) {
           isOnGround = true;
@@ -114,6 +115,17 @@ class Player extends SpriteAnimationComponent
       _yAxisInput = 0;
     }
     position += velocity * dt;
+    boundPosition();
+  }
+
+  void boundPosition() {
+    position.clamp(
+      Vector2(game.levelBounds.topLeft.dx, game.levelBounds.topLeft.dy) +
+          size / 2,
+      Vector2(game.levelBounds.bottomRight.dx,
+              game.levelBounds.bottomRight.dy) -
+          size / 2,
+    );
   }
 
   Async.Future<void> animateStay() async {

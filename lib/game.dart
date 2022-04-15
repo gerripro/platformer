@@ -17,6 +17,7 @@ class MyGame extends FlameGame
     with HasTappables, HasDraggables, HasCollidables {
   Player player = Player();
   Level? currentLevel;
+  late Rect levelBounds;
 
   JoystickComponent joystick = JoystickComponent(
       size: 50,
@@ -25,10 +26,13 @@ class MyGame extends FlameGame
 
   @override
   Future<void> onLoad() async {
-    camera.viewport = FixedResolutionViewport(Vector2(960, 540));
+    debugMode = true;
+    camera.viewport = FixedResolutionViewport(
+        Vector2(960, 540)); //(1980,1024));//(960, 540));
     await loadLevel(Assets.level1);
     await Flame.device.fullScreen();
     await Flame.device.setLandscape();
+    camera.followComponent(player, worldBounds: levelBounds);
     await super.onLoad();
   }
 
@@ -36,13 +40,20 @@ class MyGame extends FlameGame
     currentLevel?.removeFromParent();
     currentLevel = Level(levelName);
     await add(currentLevel!);
+    var map2 = currentLevel!.level!.tileMap.map;
+    levelBounds = Rect.fromLTWH(
+      0,
+      0,
+      (map2.width * map2.tileWidth).toDouble(),
+      (map2.height * map2.tileHeight).toDouble(),
+    );
     currentLevel!.loadPlayer(player);
   }
 
   @override
   void onTapDown(int pointerId, TapDownInfo info) {
     super.onTapDown(pointerId, info);
-    Vector2 tapPosition = info.eventPosition.game;
+    Vector2 tapPosition = info.eventPosition.viewport;
     add(joystick..position = tapPosition);
   }
 

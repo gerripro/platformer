@@ -9,8 +9,11 @@ import 'package:flame/palette.dart';
 import 'package:flutter/widgets.dart';
 
 import 'game.dart';
+
+MyGame game = MyGame();
+
 void main() {
-  runApp(GameWidget(game: MyGame()));
+  runApp(GameWidget(game: game));
 }
 
 
