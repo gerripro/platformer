@@ -55,8 +55,6 @@ class Player extends SpriteAnimationComponent
   }
 
   Async.Future<void> checkAnimation() async {
-    print(velocity.y);
-    bool isHover = velocity.y <= 50 && velocity.y >= 0;//velocity.y >= -10 && velocity.y <= 10;
     if (isOnGround) {
       if (velocity.x > 0) {
         await animateRunRight();
