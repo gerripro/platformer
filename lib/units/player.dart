@@ -13,14 +13,13 @@ import 'package:flame/geometry.dart';
 import 'dart:ui' as ui;
 
 import 'package:flutter/widgets.dart';
-import 'package:platformer/interfaces/move.dart';
 import 'package:platformer/main.dart';
 import 'package:platformer/scene/platform.dart';
 import 'package:platformer/utils/configs.dart';
 import 'package:platformer/utils/direction.dart';
 
 class Player extends SpriteAnimationComponent
-    with HasGameRef, Move, HasHitboxes, Collidable {
+    with HasGameRef, HasHitboxes, Collidable {
   Player();
 
   final double _radius = 80;
@@ -101,13 +100,6 @@ class Player extends SpriteAnimationComponent
     if (direction == JoystickDirection.up) {
       _yAxisInput = 1;
     }
-  }
-
-  @override
-  void move(Vector2 targetPos, {PositionComponent? component, double? speed}) {
-    component = this;
-    speed = _speed;
-    super.move(targetPos, component: component, speed: speed);
   }
 
   @override
